@@ -1,0 +1,138 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="這是新北市資料開放平臺。">
+  <meta property="og:url" content="https://data.ntpc.gov.tw/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="新北市資料開放平臺 data.ntpc.gov.tw">
+  <meta name="og:description" content="這是新北市資料開放平臺。">
+
+  <title>新北市資料開放平臺 NTPC OpenData API 服務</title>
+  <link rel="stylesheet" type="text/css" href="/openapi/css/swagger-ui.css">
+  <link href="/favicon.ico" rel="icon" type="image/x-icon" />
+  <style>
+    html {
+      box-sizing: border-box;
+      overflow: -moz-scrollbars-vertical;
+      overflow-y: scroll;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    body {
+      margin: 0;
+      background: #fafafa;
+    }
+    .topbar{
+      /* display: none; */
+    }
+    .url{
+      color: #2072CF;
+    }
+    small:nth-child(1){
+      background-color: #666D7A !important;
+    }
+    small:nth-child(2){
+      background-color: #5A7C03 !important;
+    }
+    .opblock-summary-method{
+      background: #0173E4 !important;
+    }
+    p, .parameter__name, .parameter__type{
+      color: #333747 !important;
+    }
+    .parameter__in{
+      color: #3D3D3D !important;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="display: none;">
+    <img class="logo-img" src="/images/social-media.png" alt="Logo"/>
+  </h1>
+  <div id="swagger-ui"></div>
+
+  <script src="/openapi/js/swagger-ui-bundle.js"> </script>
+  <script src="/openapi/js/swagger-ui-standalone-preset.js"> </script>
+  <script src="/openapi/js/jquery.min.js"></script>
+  <script>
+    window.onload = function() {
+      // Begin Swagger UI call region
+      const ui = SwaggerUIBundle({
+        url: "/openapi/units/0020000",
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout",
+        onComplete: function(){
+          // console.log('onComplete');
+          let arrow = $('.arrow');
+          for(let i = 0; i < arrow.length; i++){
+            arrow[i].setAttribute('alt', 'image-arrow');
+            arrow[i].setAttribute('title', 'image-arrow');
+          }
+        }
+      })
+      // End Swagger UI call region
+
+      window.ui = ui;
+      $('.download-url-input').attr('id', 'swagger-input')
+      $('.download-url-wrapper').append('<label class="swagger-input-label" for="swagger-input">')
+
+      setTimeout(() => {
+        // hide link
+        let link = document.getElementsByClassName('link');
+        if(link[1])
+          link[1].remove();
+      }, 500);
+      setTimeout(function() {
+        // 為符合無障礙所以把 h4 都替換成 h3
+        // $('#swagger-ui h4').replaceWith(function(){
+        //   return $("<h3>", {
+        //       'id': $(this).attr('id'),
+        //       "class": $(this).attr('class'),
+        //       "data-tag": $(this).attr('data-tag'),
+        //       "data-is-open": $(this).attr('data-is-open'),
+        //       html: $(this).html()
+        //   })
+        // });
+        // wrap h3 tag
+        let title_url = $('.url');
+        title_url.wrap('<h3></h3>');
+
+        $('.information-container.wrapper a').attr('title', '另開新視窗')
+        // $('.topbar').remove()
+        $('.expand-operation').attr('aria-label', '向下展開')
+        $('.expand-operation svg').attr('title', '向下展開')
+        // handle input text field
+        let text_field = $("input[type=text]");
+        for(let i=0; i<text_field.length; i++){
+          text_field[i].title = text_field[i].placeholder ? text_field[i].placeholder : text_field[i].value;
+        }
+        // handle <a> tag
+        let a_tag = $('a');
+        for(let i=0;i<a_tag.length; i++){
+          if(a_tag[i].children.length == 0)
+            a_tag[i].remove();
+        }
+      }, 2000)
+    }
+
+  </script>
+</body>
+
+</html>
