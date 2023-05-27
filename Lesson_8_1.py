@@ -1,4 +1,6 @@
 import requests
+import pandas as pd
+import streamlit as st
 url4="https://tcgbusfs.blob.core.windows.net/dotapp/youbike/v2/youbike_immediate.json"
 #  Ubike open api
 
@@ -13,7 +15,7 @@ if response.status_code==200:
     print(type(all_data))
 else:  print(f"fail code:{response.status_code}")
 
-import pandas as pd
+
 #class pandas.DataFrame(data=None, index=None, columns=None, dtype=None, copy=None)[source]
 DF1= pd.DataFrame(data=all_data)
 
@@ -25,8 +27,8 @@ Mask_DF.to_csv('可借用車輛小於3站點.csv')
 Mask_DF.to_excel('可借用車輛小於3站點.xlsx')  #pip install openpyxl
 
 # 加入INPUT變數
-min=int(input("請輸入要查詢的可借數量:"))
+min= 3 #int(input("請輸入要查詢的可借數量:"))
 mask=DF1['sbi']<=min
 min_DF1=DF1[mask]
-filename=f'可借小於{min}數量站點.xlsx'
-min_DF1.to_excel(filename)
+st.min_DF1
+ 
