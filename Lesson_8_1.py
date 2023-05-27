@@ -30,5 +30,16 @@ Mask_DF.to_excel('可借用車輛小於3站點.xlsx')  #pip install openpyxl
 min= 3 #int(input("請輸入要查詢的可借數量:"))
 mask=DF1['sbi']<=min
 min_DF1=DF1[mask]
-st.min_DF1
+
+
+#  from teacher
+dataFrame = pd.DataFrame(data=all_data,columns=['sna','tot','sbi','sarea','mday','ar','bemp','act'])
+mask = dataFrame['sbi'] <= 3
+mask_dataFrame = dataFrame[mask]
+st.dataframe(mask_dataFrame)
+
+#C:\Users\User\Documents\GitHub\Python_Class_202305>streamlit run Lesson_8_1.py
+#You can now view your Streamlit app in your browser.
+#Local URL: http://localhost:8501
+#Network URL: http://172.16.4.19:8501
  
