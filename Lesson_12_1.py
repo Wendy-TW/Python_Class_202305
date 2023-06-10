@@ -6,4 +6,9 @@ codeSeries=codeFrame['證券代號'].astype(str) + codeFrame['證券名稱']
 
 
 with st.sidebar:
-    st.multiselect("請選擇股票:",codeSeries)
+    selected_codes = st.multiselect("請選擇股票:",codeSeries,
+                                    max_selections=4)
+    
+for code in selected_codes:
+    code1=[:4]+=".tw"
+    st.write(code1)
