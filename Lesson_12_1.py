@@ -10,5 +10,5 @@ with st.sidebar:
                                     max_selections=4)
     
 for code in selected_codes:
-    code1=[:4]+".tw"
+    code1=code[:4]+".tw"
     st.write(code1)
