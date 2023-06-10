@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import yfinance as yf
+
 
 codeFrame=pd.read_csv('個股日成交資訊.csv',  usecols=['證券代號','證券名稱', '成交金額'])
 codeSeries=codeFrame['證券代號'].astype(str) + codeFrame['證券名稱']
