@@ -10,12 +10,11 @@ codeSeries=codeFrame['證券代號'].astype(str) + codeFrame['證券名稱']
 with st.sidebar:
     selected_codes = st.multiselect("請選擇股票:",codeSeries,
                                     max_selections=4)
-
-st.cache_data
-def fetch_stock_dataframe(id):
-    stock=yf.download(id,start='2023-01-01')
-    return fetch_stock_dataframe
-
+@st.cache_data
+def fetch_stock_dataFrame(id):
+    stock_dataFrame = yf.download(id,start='2022-01-01')
+    return stock_dataFrame
+ 
 
 for code in selected_codes:
     code1=code[:4]+".TW"
