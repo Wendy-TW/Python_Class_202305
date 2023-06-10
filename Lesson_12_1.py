@@ -1,4 +1,4 @@
-import steamlit as st
+import streamlit as st
 import pandas as pd
 
 codeFrame=pd.read_csv('個股日成交資訊.csv',  usecols=['證券代號','證券名稱', '成交金額'])
